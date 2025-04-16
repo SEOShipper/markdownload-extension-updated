@@ -3,13 +3,15 @@
   "scripts": {
     "npminstall": "npm install",
     "build": "web-ext build",
-    "start:firefoxdeveloper": "web-ext run -f /home/rony/Downloads/firefox-138.0b7/firefox/firefox -u https://en.wikipedia.org/wiki/Special:Random --bc",
+    "start:firefoxdeveloper": "web-ext run -u https://en.wikipedia.org/wiki/Special:Random --bc",
     "start:chromedevwin": "web-ext run -t chromium --chromium-binary /home/rony/Work/Browsers/chrome-linux64/chrome --u https://docs.firecrawl.dev/introduction --bc --args='--no-sandbox'",
     "start:waveboxwin": "web-ext run -t chromium --chromium-binary %localappdata%/WaveboxApp/Application/wavebox.exe",
     "start:androidwin11": "adb connect 127.0.0.1:58526 && web-ext run -t firefox-android --adb-device 127.0.0.1:58526 --firefox-apk org.mozilla.fenix"
   },
   "devDependencies": {
+    "linkedom": "^0.18.9",
     "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2",
     "web-ext": "^8.5.0"
   }
 }

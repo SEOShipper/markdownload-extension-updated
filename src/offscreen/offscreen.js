@@ -1,3 +1,5 @@
+
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initOffscreen);
 
@@ -264,6 +266,9 @@ async function convertArticleToMarkdown(article, downloadImages = null, provided
   // Use provided options or fallback to default options
   const options = providedOptions || defaultOptions;
   
+  console.log("convertArticleToMarkdown:Article:", article);
+
+
   if (downloadImages != null) {
     options.downloadImages = downloadImages;
   }
@@ -340,6 +345,7 @@ function getCodeLanguage(node) {
  */
 function turndown(content, options, article) {
   console.log("Starting turndown with options:", options.tableFormatting); // Debug log
+  console.log("Content:", content);
 
   if (options.turndownEscape) TurndownService.prototype.escape = TurndownService.prototype.defaultEscape;
   else TurndownService.prototype.escape = s => s;
@@ -764,7 +770,9 @@ async function getArticleFromDom(domString, options) {
   if (!domString) {
     throw new Error('Invalid DOM string provided');
   }
-  
+
+  console.log("getArticleFromDom:domString:", domString);
+
   const parser = new DOMParser();
   const dom = parser.parseFromString(domString, "text/html");
   
@@ -861,6 +869,8 @@ async function getArticleFromDom(domString, options) {
    header.className = '';
    header.outerHTML = header.outerHTML;
  });
+
+ console.log("getArticleFromDom:dom:", dom);
 
  // Simplify the DOM into an article
  const article = new Readability(dom).parse();

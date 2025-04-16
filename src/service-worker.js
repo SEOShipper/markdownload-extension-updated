@@ -28,6 +28,7 @@ const activeDownloads = new Map();
  * Handle messages from content scripts and popup
  */
 async function handleMessages(message, sender, sendResponse) {
+  console.log("handleMessages:message:", message);
   switch (message.type) {
     case "clip":
       await handleClipRequest(message, sender.tab?.id);
@@ -223,6 +224,7 @@ async function ensureOffscreenDocumentExists() {
  * Handle clip request - Send to offscreen document or process directly in Firefox
  */
 async function handleClipRequest(message, tabId) {
+  
   if (typeof chrome !== 'undefined' && chrome.offscreen) {
     // Chrome - use offscreen document
     await ensureOffscreenDocumentExists();
@@ -1050,6 +1052,7 @@ async function getArticleFromContent(tabId, selection = false, options = null) {
         throw new Error('Failed to get DOM content');
       }
       
+      console.log("getArticleFromContent:results:", results);
       const article = await getArticleFromDom(results[0].result.dom, options);
       
       if (selection && results[0].result.selection) {

@@ -3,7 +3,7 @@ function notifyExtension() {
     browser.runtime.sendMessage({ type: "clip", dom: content});
 }
 
-function getHTMLOfDocument() {
+function getHTMLOfDocument() { // working
     // make sure a title tag exists so that pageTitle is not empty and
     // a filename can be genarated.
     if (document.head.getElementsByTagName('title').length == 0) {
@@ -105,6 +105,9 @@ function getSelectionAndDom() {
         console.error('Failed to get document HTML');
         return null;
       }
+
+      console.log("DOM content:", dom);
+      console.log("Selection content:", selection);
       
       return {
         selection: selection,
